@@ -1,213 +1,43 @@
+<?php require("register.class.php") ?>
+<?php
+	if(isset($_POST['submit'])){
+		$user = new RegisterUser($_POST['username'], $_POST['password']);
+	}
+?>
+
+<!DOCTYPE html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VTDT Sky · semantic weekly</title>
-    <link rel="css" href="style.
-
-    <?php include('data.php') ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-<link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header class="header">
-        <div class="header-content">
 
-            <div class="starter">
-                <button class="button3">
-                    <svg class="text-gray-600 w-6 h-6 "  fill="currentColor" viewBox="0 0 35 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-                </button>
-                <h1 class="vtdtText" >VTDT Sky</h1>
-
-
-                <p class="location">
-                    <img class="img2" src="https://forecast-app-vtdt.vercel.app/images/google-maps.gif">
-                    <?php echo $forecast["city"]["name"]; ?>,
-                    <?php echo getC($forecast["city"]["country"]); ?>
-                </p>
-            </div>
-
-                <div class="cons">
-                    <img class="bell" id="bel2" src="https://forecast-app-vtdt.vercel.app/images/notification.gif">
-                    <img class="bell" id="bel"  src="https://forecast-app-vtdt.vercel.app/images/settings.gif"> 
-                </div>
-
-
-            <div class="second">
-                <button type="button" class="but2 button1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 34 24" stroke-width="1.5" stroke="currentColor" class="smth"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg> 
-                Light
-                </button>
-
-
-                <div class="search">
-                    <svg class="lupa" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11 2a9 9 0 1 0 6.293 15.293l4.707 4.707a1 1 0 0 0 1.414-1.414l-4.707-4.707A9 9 0 0 0 11 2zM11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14z"></path></svg>
-                    <input type="search" id="site-search"/>
-                </div>
-
-            </div>
+<div class="container">
+    <h1> Listless</h1>
+    <div class ="loginbox">
+        <div class="logintxt">
+            <p>Login to your account</p>
         </div>
-    </header>
+            <div class="info">
+            <form action="" enctype="multipart/form-data" class="form" method="post">
+                <input class="usr" id="usr" type="text" name="username" placeholder="Email" required>
+                <input class="usr" id="psw" type="text" name="password" placeholder="Enter Password" required>
+
+                <button type="submit" name="submit" class="SubButton">Sign in or Login</button>
 
 
-    <div class="dashboard">
-        <div class="left-column">
-            <div class="card">
-                    <div class="rowheader">
-                        <h2>Current Weather</h2>
-                    </div>
-                    <p class="localtime"> Local time: <?php echo date("g:i A") ?></p>
-                    <div class="mainweather">
-                        <div class="tempsection">
-                            <p class="tempbig">-8</p>
-                            <p class="tempunit">°C</p>
-                        </div>
-                        <div>
-                            <p class="condition">Freezing fog</p>
-                            <p class="feelslike">Feels like -11.6°C</p>
-                        </div>
-                    </div>
-                    <div class="windrow">
-                        <p>Current wind direction:</p>
-                        <p class="winddir">ESE</p>
-                    </div>
+                <p class="error"><?php echo @$user->error ?></p>
+                <p class="success"><?php echo @$user->success ?></p>
 
-                </div>
-
-
-            <div class="grid">
-                <div class="metblock">
-                    <p class="metlabel"> <img class="imga" src="https://forecast-app-vtdt.vercel.app/images/clouds.gif"> Air quality </p>
-                    <div class="air-num-under">
-                        <p class="metval">2</p>
-                    </div>
-                </div>
-
-                <div class="metblock">
-                    <p class="metlabel"> <img class="imga" src="https://forecast-app-vtdt.vercel.app/images/wind.gif"> Wind </p>
-                    <p class="metval">
-                    <?php echo $forecast["list"][0]["speed"]; ?>km/h
-                    </p>
-                </div>
-                <div class="metblock">
-                    <p class="metlabel"> <img class="imga" src="https://forecast-app-vtdt.vercel.app/images/humidity.gif"> Humidity </p>
-                    <p class="metval">
-                    <?php echo $forecast["list"][0]["humidity"]; ?>%
-                    </p>
-                </div>
-
-               <!--------------------------------------------------------------------->
-
-                <div class="metblock">
-                    <p class="metlabel"> <img class="imga" src="https://forecast-app-vtdt.vercel.app/images/vision.gif"> Visibility </p>
-                    <div class="air-num-under">
-                        <p class="metval"> 10 km</p>
-                    </div>
-                </div>
-
-
-                <div class="metblock">
-                    <p class="metlabel"> <img class="imga" src="https://forecast-app-vtdt.vercel.app/images/air-pump.gif"> Pressure </p>
-                    <p class="metval">29.51 in</p>
-                </div>
-                <div class="metblock">
-                    <p class="metlabel"> <img class="imga" src="https://forecast-app-vtdt.vercel.app/images/air-pump.gif"> Pressure </p>
-                    <p class="metval">
-                    <?php echo $forecast["list"][0]["pressure"]; ?>°
-                    </p>
-                </div>
-                
-            </div>
-
-
-            <div class="sunmoonbar">
-                <div class="sunblock">
-                    <p class="metlabel" style="font-size:14px; margin:0 0 8px 0;">Sun & Moon Summary</p>
-                    <div class="sun-row">
-                        <p>🌤️</p>
-                        <p class="icontext">Air Quality:</p>
-                        <p class="icontime">42</p>
-                    </div>
-                    <div class="sun-row">
-                        <p>🌅</p>
-                        <p class="icontext">Sunrise:</p>
-                        <p class="icontime">07:23 AM</p>
-                    </div>
-                    <div class="sun-row">
-                        <p>🌇</p>
-                        <p class="icontext">Sunset:</p>
-                        <p class="icontime">05:42 PM</p>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="sunmoonbar">
-                <div class="moonblock">
-                    <p class="metlabel" style="font-size:14px; margin:0 0 8px 0;">Air Quality & Night</p>
-                    <div class="sun-row">
-                        <p>🌙</p>
-                        <p class="icontext">Air Quality</p>
-                        <p class="icontime">42</p>
-                    </div>
-                    <div class="sun-row">
-                        <p>🌙</p>
-                        <p class="icontext">Moonrise</p>
-                        <p class="icontime">09:17 AM</p>
-                    </div>
-                    <div class="sun-row">
-                        <p>🌑</p>
-                        <p class="icontext">Moonset</p>
-                        <p class="icontime">04:25 AM</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="Casted">
-            <div class="weekly-card">
-                <button type="button" class="btn btn-dark"> This Week </button>
-                <button type="button" class="btn btn-light"> Next Week </button>
-
-                <div class="forecast-grid">
-
-                    <div class="forecast-row">
-                        <p class="DayTime">12AM</p>
-                        <div class="weather-cell"></p> <p class="weatherDeez"> <?php echo $firstDayDesc; ?> </p></div>
-                        <p class="tempvall"> <?php echo $firstNight; ?> <span class="usa">°C</span></p>
-                        <p class="windvall"> <?php echo $firstDaySpeed; ?> <span class="usa">km/h</span></p>
-                        <p class="humvall"> <?php echo $firstDayHum; ?> <span class="usa">%</span></p>
-                    </div>
-
-
-                    <div class="forecast-row">
-                        <p class="DayTime">1AM</p>
-                        <div class="weather-cell"></p> <p class="weatherDeez"> <?php echo $firstDayDesc; ?> </p></div>
-                        <p class="tempvall"> <?php echo $firstNight; ?> <span class="usa">°C</span></p>
-                        <p class="windvall"> <?php echo $firstDaySpeed; ?> <span class="usa">km/h</span></p>
-                        <p class="humvall"> <?php echo $firstDayHum; ?> <span class="usa">%</span></p>
-                    </div>
-                    
-                    <div class="forecast-row">
-                        <p class="DayTime">2AM</p>
-                        <div class="weather-cell"></p> <p class="weatherDeez"> <?php echo $firstDayDesc; ?> </p></div>
-                        <p class="tempvall"> <?php echo $firstNight; ?> <span class="usa">°C</span></p>
-                        <p class="windvall"> <?php echo $firstDaySpeed; ?> <span class="usa">km/h</span></p>
-                        <p class="humvall"> <?php echo $firstDayHum; ?> <span class="usa">%</span></p>
-                    </div>
-
-                </div>
-            </div>
+            </form> 
         </div>
     </div>
+</div>
+
 </body>
 </html>
-
-
-
